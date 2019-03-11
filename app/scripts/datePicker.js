@@ -41,7 +41,8 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
     scope: {
       model: '=datePicker',
       after: '=?',
-      before: '=?'
+      before: '=?',
+      callback: '&'
     },
     link: function (scope, element, attrs, ngModel) {
       function prepareViews() {
@@ -143,6 +144,7 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
         if (scope.callbackOnSetDate) {
           scope.callbackOnSetDate(attrs.datePicker, scope.date);
         }
+        callback && callback();
       };
 
       function update() {
