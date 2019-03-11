@@ -48,7 +48,8 @@ var Module = angular.module('datePicker', []);
       scope: {
         model: '=datePicker',
         after: '=?',
-        before: '=?'
+        before: '=?',
+        callback:'&'
       },
       link: function (scope, element, attrs, ngModel) {
         function prepareViews() {
@@ -150,6 +151,7 @@ var Module = angular.module('datePicker', []);
           if (scope.callbackOnSetDate) {
             scope.callbackOnSetDate(attrs.datePicker, scope.date);
           }
+          callback && callback();
         };
 
         function update() {
